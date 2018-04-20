@@ -1,0 +1,27 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:five="http://namespaces.zope.org/five"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    i18n_domain="senaite">
+
+    <five:registerPackage package="." initialize=".initialize"/>
+
+    <!-- include packages -->
+    <include package=".browser" />
+
+    <!-- Installation Profile -->
+    <genericsetup:registerProfile
+        name="default"
+        title="SENAITE KANBAN"
+        directory="profiles/default"
+        description="SENAITE KANBAN Extension Profile"
+        provides="Products.GenericSetup.interfaces.EXTENSION"/>
+
+    <!-- Run Setup Script -->
+    <genericsetup:importStep
+        name="senaite.exporter.setupHandler"
+        title="SENAITE KANBAN: Run Setup Handler"
+        description="Run various configuration actions"
+        handler="senaite.kanban.setuphandlers.setup_handler"/>
+
+</configure>

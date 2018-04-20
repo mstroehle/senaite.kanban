@@ -1,0 +1,18 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser">
+
+    <!-- Kanban Card that wraps Worksheet objects -->
+    <adapter
+        for="bika.lims.interfaces.IWorksheet"
+        factory=".views.KanbanCard"/>
+
+    <!-- Kanban View for Worksheets -->
+    <browser:page
+        name="kanbanview"
+        for="bika.lims.interfaces.IWorksheetFolder"
+        class=".views.KanbanView"
+        permission="zope2.View"
+    />
+
+</configure>

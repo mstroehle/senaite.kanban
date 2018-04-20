@@ -1,0 +1,41 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="senaite" >
+
+<body>
+  <metal:content-title fill-slot="content-title">
+    <h1>Kanban Board</h1>
+  </metal:content-title>
+
+  <metal:content-core fill-slot="content-core">
+    <div class="content">
+      <div class="row">
+        <tal:columns repeat="state python:['open', 'to_be_verified', 'verified']" >
+          <div class="col-4">
+            <h2 tal:content="state"></h2>
+            <tal:cards repeat="card python:view.get_by_state(state)">
+              <div class="card">
+                <div class="card-title">
+                  <div tal:content="card/Title"></div>
+                  <div tal:content="card/getAnalyst"></div>
+                  <div tal:content="card/getWorksheetTemplateTitle"></div>
+                  <div tal:define="reg card/getNumberOfRegularAnalyses;
+                                   qc card/getNumberOfQCAnalyses;">
+                    <span tal:content="reg"></span>&nbsp;+
+                    <span tal:content="qc"></span>&nbsp;=
+                    <span tal:content="python: qc+reg"></span>
+                  </div>
+                </div>
+              </div>
+            </tal:cards>
+          </div>
+        </tal:columns>
+      </div>
+    </div>
+  </metal:content-core>
+</body>
+</html>
