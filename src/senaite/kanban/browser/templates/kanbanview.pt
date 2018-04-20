@@ -15,7 +15,7 @@
     <div class="content">
       <div class="row">
         <tal:columns repeat="state python:['open', 'to_be_verified', 'verified']" >
-          <div class="col-4">
+          <div class="col-sm-4">
             <h2 tal:content="state"></h2>
             <tal:cards repeat="card python:view.get_by_state(state)">
               <div class="card">
